@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.estafet.microservices.scrum</groupId>
 	<artifactId>microservices-scrum-commons-lib</artifactId>
-	<version>1.0.5-SNAPSHOT</version>
+	<version>1.0.5</version>
 
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -91,7 +91,7 @@
 		<connection>scm:git:https://github.com/Estafet-LTD/estafet-microservices-scrum-commons-lib.git</connection>
 		<developerConnection>scm:git:https://github.com/Estafet-LTD/estafet-microservices-scrum-commons-lib.git</developerConnection>
 		<url>https://github.com/Estafet-LTD/estafet-microservices-scrum-commons-lib</url>
-		<tag>HEAD</tag>
+		<tag>microservices-scrum-commons-lib-1.0.5</tag>
 	</scm>
 
 	<name>Commons Libaries for Estafet Microservices</name>
