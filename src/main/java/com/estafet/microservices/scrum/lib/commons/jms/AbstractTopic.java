@@ -1,50 +1,21 @@
 package com.estafet.microservices.scrum.lib.commons.jms;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+import com.estafet.microservices.scrum.lib.commons.properties.PropertyUtils;
+
 public class AbstractTopic {
 
-	private Properties prop = null;
-
-	protected String getProperty(String property) {
-		if (prop == null) {
-			prop = new Properties();
-			InputStream inputStream = null;
-			String propFileName = "integration-test.properties";
-			try {
-				inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-				if (inputStream != null) {
-					prop.load(inputStream);
-				} else {
-					throw new RuntimeException("property file '" + propFileName + "' not found in the classpath");
-				}
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			} finally {
-				try {
-					if (inputStream != null) {
-						inputStream.close();
-					}
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				}
-			}
-		}
-		return prop.getProperty(property);
-	}
+	private PropertyUtils props = PropertyUtils.instance();
 
 	protected Connection createConnection() throws JMSException {
-		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(getProperty("jboss.amq.broker.url"));
-		return connectionFactory.createConnection(getProperty("jboss.amq.broker.user"),
-				getProperty("jboss.amq.broker.password"));
+		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(props.getProperty("jboss.amq.broker.url"));
+		return connectionFactory.createConnection(props.getProperty("jboss.amq.broker.user"),
+				props.getProperty("jboss.amq.broker.password"));
 	}
 
 }
